@@ -10,7 +10,7 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 
 using studentManagerUwp.Core.Models;
 using studentManagerUwp.Core.Services;
-
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -20,37 +20,68 @@ namespace studentManagerUwp.Views
 {
     public sealed partial class ProfessorsPage : Page, INotifyPropertyChanged
     {
-        private SampleOrder _selected;
+        private Professor _selected;
 
-        public SampleOrder Selected
+        public Professor Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }
         }
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+         ObservableCollection<Professor> SampleItems { get; set; }
 
         public ProfessorsPage()
         {
+            SampleItems  = new ObservableCollection<Professor>();
             InitializeComponent();
             Loaded += ProfessorsPage_Loaded;
+
         }
 
         private async void ProfessorsPage_Loaded(object sender, RoutedEventArgs e)
         {
             SampleItems.Clear();
 
-            var data = await SampleDataService.GetMasterDetailDataAsync();
+            await DatabaseConnector.LoadRecordsAsync(SampleItems);
 
-            foreach (var item in data)
+            foreach (Professor p in SampleItems)
             {
-                SampleItems.Add(item);
+                
+            var messageDialog = new MessageDialog(SampleItems.Count+ " Person Data  : " + p.Id + " - " + p.fullName + " - " + p.password);
+
+            // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
+            messageDialog.Commands.Add(new UICommand(
+                "Try again",
+                new UICommandInvokedHandler(this.CommandInvokedHandler)));
+            messageDialog.Commands.Add(new UICommand(
+                "Close",
+                new UICommandInvokedHandler(this.CommandInvokedHandler)));
+
+            // Set the command that will be invoked by default
+            messageDialog.DefaultCommandIndex = 0;
+
+            // Set the command to be invoked when escape is pressed
+            messageDialog.CancelCommandIndex = 1;
+
+            // Show the message dialog
+            await messageDialog.ShowAsync();
             }
+        
+
+        
+
+
 
             if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
             {
-                Selected = SampleItems.FirstOrDefault();
+                //Selected = SampleItems.FirstOrDefault();
             }
+        }
+        private void CommandInvokedHandler(IUICommand command)
+        {
+            // Display message showing the label of the command that was invoked
+            //NotifyUser("The '" + command.Label + "' command has been selected.",
+                //NotifyType.StatusMessage);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
