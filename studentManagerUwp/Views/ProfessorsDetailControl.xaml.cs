@@ -9,13 +9,13 @@ namespace studentManagerUwp.Views
 {
     public sealed partial class ProfessorsDetailControl : UserControl
     {
-        public SampleOrder MasterMenuItem
+        public Professor MasterMenuItem
         {
-            get { return GetValue(MasterMenuItemProperty) as SampleOrder; }
+            get { return GetValue(MasterMenuItemProperty) as Professor; }
             set { SetValue(MasterMenuItemProperty, value); }
         }
 
-        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrder), typeof(ProfessorsDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
+        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(Professor), typeof(ProfessorsDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
 
         public ProfessorsDetailControl()
         {

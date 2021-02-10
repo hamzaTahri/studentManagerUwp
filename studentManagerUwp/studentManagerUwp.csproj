@@ -292,13 +292,21 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\absence64.png" />
+    <Content Include="Assets\courses64.png" />
+    <Content Include="Assets\fields64.png" />
     <Content Include="Assets\LockScreenLogo.scale-200_old.png" />
+    <Content Include="Assets\prof64.png" />
+    <Content Include="Assets\report64.png" />
+    <Content Include="Assets\session64.png" />
     <Content Include="Assets\SplashScreen.scale-200_old.png" />
     <Content Include="Assets\Square150x150Logo.scale-200_old.png" />
     <Content Include="Assets\Square44x44Logo.scale-200_old.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated_old.png" />
     <Content Include="Assets\StoreLogo_old.png" />
+    <Content Include="Assets\students64.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200_old.png" />
+    <Content Include="Assets\wprof64.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

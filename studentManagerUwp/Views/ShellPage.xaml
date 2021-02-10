@@ -28,14 +28,42 @@
             Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/projectTypes/navigationpane.md
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
-            <winui:NavigationViewItem x:Uid="Shell_Main" Icon="Document" helpers:NavHelper.NavigateTo="views:MainPage" />
-            <winui:NavigationViewItem x:Uid="Shell_Professors" Icon="Document" helpers:NavHelper.NavigateTo="views:ProfessorsPage" />
-            <winui:NavigationViewItem x:Uid="Shell_Students" Icon="Document" helpers:NavHelper.NavigateTo="views:StudentsPage" />
-            <winui:NavigationViewItem x:Uid="Shell_Courses" Icon="Document" helpers:NavHelper.NavigateTo="views:CoursesPage" />
-            <winui:NavigationViewItem x:Uid="Shell_Fields" Icon="Document" helpers:NavHelper.NavigateTo="views:FieldsPage" />
-            <winui:NavigationViewItem x:Uid="Shell_Sessions" Icon="Document" helpers:NavHelper.NavigateTo="views:SessionsPage" />
-            <winui:NavigationViewItem x:Uid="Shell_Reporting" Icon="Document" helpers:NavHelper.NavigateTo="views:ReportingPage" />
-            <winui:NavigationViewItem x:Uid="Shell_Chart" Icon="Document" helpers:NavHelper.NavigateTo="views:ChartPage" />
+            <winui:NavigationViewItem x:Uid="Shell_Main" Icon="Home" helpers:NavHelper.NavigateTo="views:MainPage" />
+            <winui:NavigationViewItem x:Uid="Shell_Professors"  helpers:NavHelper.NavigateTo="views:ProfessorsPage">
+                <winui:NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="Assets/prof64.png" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+            <winui:NavigationViewItem x:Uid="Shell_Students"  helpers:NavHelper.NavigateTo="views:StudentsPage" >
+                <winui:NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="Assets/students64.png" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+            <winui:NavigationViewItem x:Uid="Shell_Courses"  helpers:NavHelper.NavigateTo="views:CoursesPage" >
+                <winui:NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="Assets/courses64.png" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+            <winui:NavigationViewItem x:Uid="Shell_Fields"  helpers:NavHelper.NavigateTo="views:FieldsPage" >
+                <winui:NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="Assets/fields64.png" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+            <winui:NavigationViewItem x:Uid="Shell_Sessions"  helpers:NavHelper.NavigateTo="views:SessionsPage" >
+                <winui:NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="Assets/session64.png" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+            <winui:NavigationViewItem x:Uid="Shell_Reporting"  helpers:NavHelper.NavigateTo="views:ReportingPage" >
+                <winui:NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="Assets/absence64.png" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+            <winui:NavigationViewItem x:Uid="Shell_Chart" helpers:NavHelper.NavigateTo="views:ChartPage" >
+                <winui:NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="Assets/report64.png" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>
             <behaviors:NavigationViewHeaderBehavior

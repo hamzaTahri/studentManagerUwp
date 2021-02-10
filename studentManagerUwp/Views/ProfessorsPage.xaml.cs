@@ -44,7 +44,7 @@ namespace studentManagerUwp.Views
 
             await DatabaseConnector.LoadRecordsAsync(SampleItems);
 
-            foreach (Professor p in SampleItems)
+            /*foreach (Professor p in SampleItems)
             {
                 
             var messageDialog = new MessageDialog(SampleItems.Count+ " Person Data  : " + p.Id + " - " + p.fullName + " - " + p.password);
@@ -65,7 +65,7 @@ namespace studentManagerUwp.Views
 
             // Show the message dialog
             await messageDialog.ShowAsync();
-            }
+            }*/
         
 
         

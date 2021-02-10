@@ -27,6 +27,8 @@ namespace studentManagerUwp.Views
         private bool _isBackEnabled;
         private WinUI.NavigationViewItem _selected;
 
+        
+
         public bool IsBackEnabled
         {
             get { return _isBackEnabled; }
