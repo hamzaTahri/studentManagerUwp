@@ -211,6 +211,7 @@
     </Compile>
     <Compile Include="Views\StudentsDetailControl.xaml.cs">
       <DependentUpon>StudentsDetailControl.xaml</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Views\StudentsPage.xaml.cs">
       <DependentUpon>StudentsPage.xaml</DependentUpon>

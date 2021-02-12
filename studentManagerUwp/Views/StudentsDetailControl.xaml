@@ -11,7 +11,7 @@
         Name="ForegroundElement"
         Padding="{StaticResource DetailPageMargin}"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-        VerticalScrollMode="Enabled" Margin="0,0,0,-115">
+        VerticalScrollMode="Enabled" Margin="0,0,0,-100">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
 
@@ -39,7 +39,7 @@
                     Text="Phone" />
                 <TextBox Margin="{StaticResource SmallTopMargin}" Style="{StaticResource DetailBodyBaseMediumStyle}"  Text="{x:Bind MasterMenuItem.Tel, Mode=OneWay}"  Name="tel"/>
 
-                <ComboBox Header="Fields" Width="245" Name="fieldd"/>
+              
 
             </StackPanel>
             <StackPanel Name="block2"  HorizontalAlignment="Center" Orientation="Horizontal" >

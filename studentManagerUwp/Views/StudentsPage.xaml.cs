@@ -46,6 +46,7 @@ namespace studentManagerUwp.Views
             if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
             {
                 //Selected = SampleItems.FirstOrDefault();
+
             }
         }
 

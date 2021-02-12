@@ -89,7 +89,7 @@ namespace studentManagerUwp.Views
             using (SQLiteConnection connection = new SQLiteConnection(sqlpath))
             {
                 connection.Open();
-                string req = "insert into Students (fullName,email,cin,tel,fieldId) values  (fullName='" + fullname + "', email='" + email + "',cin='" + cin + "' , tel='" + phone + "' , fieldId='" + id_field + "')";
+                string req = "insert into Students (fullName,email,cin,tel,fieldId) values  ('" + fullname + "','" + email + "','" + cin + "' ,'" + phone + "' ,'" + id_field + "')";
                 SQLiteCommand command = new SQLiteCommand(req, connection);
                 var reader = command.ExecuteNonQuery();
 
@@ -167,12 +167,17 @@ namespace studentManagerUwp.Views
         private void Button_ClickAsync(object sender, RoutedEventArgs e)
         {
 
-                if(Insert_Student(cin.Text,1, name.Text, email.Text, tel.Text))
-                {
-                    var messageDialog = new MessageDialog("Student inserted successfully");
-                    messageDialog.ShowAsync();
-                }
+
             
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (Insert_Student(cin.Text, '1', name.Text, email.Text, tel.Text))
+            {
+                var messageDialog = new MessageDialog("Student inserted successfully");
+                messageDialog.ShowAsync();
+            }
         }
     }
 }

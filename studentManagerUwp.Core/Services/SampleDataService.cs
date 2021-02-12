@@ -495,5 +495,6 @@ namespace studentManagerUwp.Core.Services
             await Task.CompletedTask;
             return AllOrders();
         }
+
     }
 }
