@@ -10,9 +10,8 @@
     <ScrollViewer
         Name="ForegroundElement"
         Padding="{StaticResource DetailPageMargin}"
-        HorizontalAlignment="Stretch"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-        VerticalScrollMode="Enabled">
+        VerticalScrollMode="Enabled" Margin="0,0,0,-115">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
 
@@ -29,22 +28,25 @@
             </StackPanel>
             <StackPanel Name="block" Padding="0,15,0,0">
                 <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Cin" />
-                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.Cin, Mode=OneWay}" />
+                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.Cin, Mode=OneWay}" Name="cin" />
                 <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="FullName" />
-                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.FullName, Mode=OneWay}" />
+                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.FullName, Mode=OneWay}" Name="name" />
                 <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Email" />
-                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}"  Text="{x:Bind MasterMenuItem.Email, Mode=OneWay}" />
+                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}"  Text="{x:Bind MasterMenuItem.Email, Mode=OneWay}" Name="email" />
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
                     Text="Phone" />
-                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}"  Text="{x:Bind MasterMenuItem.Tel, Mode=OneWay}" />
+                <TextBox Margin="{StaticResource SmallTopMargin}" Style="{StaticResource DetailBodyBaseMediumStyle}"  Text="{x:Bind MasterMenuItem.Tel, Mode=OneWay}"  Name="tel"/>
+
+                <ComboBox Header="Fields" Width="245" Name="fieldd"/>
+
             </StackPanel>
             <StackPanel Name="block2"  HorizontalAlignment="Center" Orientation="Horizontal" >
-                <Button Name="BtnEditProf" Content="Edit" Foreground="Black"  Background="White" Margin="20"  Width="100" BorderBrush="Green"/>
-                <Button Name="BtnRemoveProf" Content="Remove" Foreground="Black"  Background="White" Width="100" BorderBrush="Red" />
+                <Button Name="BtnEditProf" Content="Edit" Foreground="Black"  Background="White" Margin="20"  Width="100" BorderBrush="Green" Click="BtnEditProf_Click"/>
+                <Button Name="BtnRemoveProf" Content="Remove" Foreground="Black"  Background="White" Width="100" BorderBrush="Red" Click="BtnRemoveProf_Click" />
             </StackPanel>
-            <Button CornerRadius="20" Width="40" Height="40" HorizontalAlignment="Right" Foreground="White" Background="Yellow" VerticalAlignment="Bottom" Content="+" FontWeight="Bold"  FontSize="20" />
+            <Button CornerRadius="20" Width="40" Height="40" HorizontalAlignment="Right" Foreground="White" Background="Yellow" VerticalAlignment="Bottom" Content="+" FontWeight="Bold"  FontSize="20" Click="Button_Click" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

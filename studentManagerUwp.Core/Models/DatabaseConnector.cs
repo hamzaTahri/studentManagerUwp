@@ -10,7 +10,9 @@ namespace studentManagerUwp.Core.Models
 
         public static async Task LoadRecordsAsync(ObservableCollection<Professor> items)
         {
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=dbFile/studentManagerDatabase.db;Version=3"))
+            var sqlCon = @"Data Source=C:\Users\ilkac\AppData\Local\Packages\C49BBD7C-8F7B-4A56-ABDC-753FC15ACC86_0g90rnz4tfct4\LocalState\studentManagerDatabase.db ;Version=3";
+
+            using (SQLiteConnection connection = new SQLiteConnection(sqlCon))
             {
                 await connection.OpenAsync();
                 SQLiteCommand command = new SQLiteCommand("SELECT * FROM Professors", connection);
@@ -40,7 +42,9 @@ namespace studentManagerUwp.Core.Models
 
         public static async Task LoadRecordsAsyncForStudent(ObservableCollection<Student> items)
         {
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=dbFile/studentManagerDatabase.db;Version=3"))
+            var sqlCon = @"Data Source=C:\Users\ilkac\AppData\Local\Packages\C49BBD7C-8F7B-4A56-ABDC-753FC15ACC86_0g90rnz4tfct4\LocalState\studentManagerDatabase.db ;Version=3";
+
+            using (SQLiteConnection connection = new SQLiteConnection(sqlCon))
             {
                 await connection.OpenAsync();
                 SQLiteCommand command = new SQLiteCommand("SELECT *  FROM Students", connection);
@@ -75,7 +79,9 @@ namespace studentManagerUwp.Core.Models
 
         public static async Task LoadRecordsAsyncForCourse(ObservableCollection<Course> items)
         {
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=dbFile/studentManagerDatabase.db;Version=3"))
+            var sqlCon = @"Data Source=C:\Users\ilkac\AppData\Local\Packages\C49BBD7C-8F7B-4A56-ABDC-753FC15ACC86_0g90rnz4tfct4\LocalState\studentManagerDatabase.db ;Version=3";
+
+            using (SQLiteConnection connection = new SQLiteConnection(sqlCon))
             {
                 await connection.OpenAsync();
                 SQLiteCommand command = new SQLiteCommand("SELECT *  FROM Courses", connection);
@@ -109,7 +115,9 @@ namespace studentManagerUwp.Core.Models
 
         public static async Task LoadRecordsAsyncForField(ObservableCollection<Field> items)
         {
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=dbFile/studentManagerDatabase.db;Version=3"))
+            var sqlCon = @"Data Source=C:\Users\ilkac\AppData\Local\Packages\C49BBD7C-8F7B-4A56-ABDC-753FC15ACC86_0g90rnz4tfct4\LocalState\studentManagerDatabase.db ;Version=3";
+
+            using (SQLiteConnection connection = new SQLiteConnection(sqlCon))
             {
                 await connection.OpenAsync();
                 SQLiteCommand command = new SQLiteCommand("SELECT *  FROM Fields ", connection);

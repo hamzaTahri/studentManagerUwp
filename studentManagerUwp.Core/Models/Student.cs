@@ -1,12 +1,19 @@
 ﻿
-using SQLite;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Data.SQLite;
+using System.Windows;
+
+
+using System.IO;
 using System;
-using System.Collections.Generic;
+using SQLite.Net.Attributes;
 
 namespace studentManagerUwp.Core.Models
 {
     public class Student 
     {
+        [PrimaryKey]
         public int Id { get; set; }
         public string Cin { get; set; }
         public string FullName { get; set; }
@@ -15,161 +22,32 @@ namespace studentManagerUwp.Core.Models
         public int FieldId { get; set; }
 
 
+        public static bool Delete_Student(string cin)
+        {
 
+            var sqlCon = @"Data Source=C:\Users\ilkac\AppData\Local\Packages\C49BBD7C-8F7B-4A56-ABDC-753FC15ACC86_0g90rnz4tfct4\LocalState\studentManagerDatabase.db ;Version=3";
+            using (SQLiteConnection connection = new SQLiteConnection())
+            {
+                connection.Open();
+                string req = "delete from Students where cin='" + cin + "'";
+                SQLiteCommand command = new SQLiteCommand(req, connection);
+                var reader = command.ExecuteNonQuery();
 
-        /*
-                ProjectDatabase db = new ProjectDatabase();
-
-                public Student()
+                if (reader > 0)
                 {
-                    db.createDatabase();
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
 
-                public bool Insert_Student(Student Student)
-                {
-                    try
-                    {
-                        using (var connection = db.GetConnection())
-                        {
-                            connection.Insert(Student);
-                            StudentsAlbum.mBuiltInStudents = new Student().allStudents().ToArray();
-                            return true;
-                        }
-                    }
-                    catch (SQLiteException ex)
-                    {
-                        var messageDialog = new MessageDialog(ex.Message);
-                        messageDialog.ShowAsync();
-                        return false;
-                    }
-                }
-
-
-                public bool Is_Exist_Student(string name)
-                {
-                    try
-                    {
-                        using (var connection = db.GetConnection())
-                        {
-                            var data = connection.Table<Student>();
-                            var data1 = data.Where(x => x.name == name).FirstOrDefault();
-                            if (data1 == null)
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                    catch (SQLiteException ex)
-                    {
-                        var messageDialog = new MessageDialog(ex.Message);
-                        messageDialog.ShowAsync();
-                        return false;
-                    }
-                }
-
-                internal bool remove()
-                {
-                    try
-                    {
-                        using (var connection = db.GetConnection())
-                        {
-                            var data = connection.Table<Student>();
-                            var data1 = data.Where(x => x.Id == Id).FirstOrDefault();
-                            connection.Delete(data1);
-                        }
-
-                        return true;
-                    }
-                    catch (SQLiteException ex)
-                    {
-                        var messageDialog = new MessageDialog(ex.Message);
-                        messageDialog.ShowAsync();
-                        return false;
-                    }
-                }
-
-                internal Student[] studentsFromField(int fieldId)
-                {
-                    try
-                    {
-                        using (var connection = db.GetConnection())
-                        {
-                            var data = connection.Table<Student>();
-                            return data.Where(x => x.fieldId == fieldId).ToArray();
-                        }
-                    }
-                    catch (SQLiteException ex)
-                    {
-                        var messageDialog = new MessageDialog(ex.Message);
-                        messageDialog.ShowAsync();
-                        return null;
-                    }
-                }
-
-                public List<Student> allStudents()
-                {
-                    using (var connection = db.GetConnection())
-                    {
-                        try
-                        {
-                            var data = connection.Table<Student>();
-                            return data.ToList();
-                        }
-                        catch (Exception e)
-                        {
-                            return new List<Student>();
-                        }
-                    }
-                }
-                public List<string> allStudentsNames()
-                {
-                    using (var connection = db.GetConnection())
-                    {
-                        try
-                        {
-                            var data = connection.Table<Student>();
-                            List<Student> list = data.ToList();
-                            List<string> listToReturn = new List<string>();
-                            foreach (Student item in list)
-                            {
-                                listToReturn.Add(item.name);
-                            }
-                            return listToReturn;
-                        }
-                        catch (Exception e)
-                        {
-                            return new List<string>();
-                        }
-                    }
-                }
+                connection.Close();
             }
 
-            class StudentsAlbum
-            {
 
-                public static Student[] mBuiltInStudents = new Student().allStudents().ToArray();
 
-                // Array of Students that make up the album:
-                private Student[] mStudents;
+        }
 
-                // Create an instance copy of the built-in Student list and
-                public StudentsAlbum()
-                {
-                    mStudents = mBuiltInStudents;
-                }
-                // Return the number of Students in the Student album:
-                public int NumStudents
-                {
-                    get { return mStudents.Length; }
-                }
-                // Indexer (read only) for accessing a Student:
-                public Student this[int i]
-                {
-                    get { return mStudents[i]; }
-                }*/
     }
 }

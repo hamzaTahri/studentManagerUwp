@@ -5,7 +5,12 @@
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio"
-  IgnorableNamespaces="uap mp genTemplate">
+  xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4"
+  xmlns:uap6="http://schemas.microsoft.com/appx/manifest/uap/windows10/6"
+  xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2"
+  IgnorableNamespaces="uap mp genTemplate iot uap3 uap4 uap6 uap2">
 
   <Identity
     Name="C49BBD7C-8F7B-4A56-ABDC-753FC15ACC86"
@@ -49,6 +54,42 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
+    <uap:Capability Name="chat"/>
+    <Capability Name="allJoyn"/>
+    <iot:Capability Name="lowLevelDevices"/>
+    <uap:Capability Name="phoneCall"/>
+    <uap:Capability Name="voipCall"/>
+    <uap:Capability Name="musicLibrary"/>
+    <uap:Capability Name="enterpriseAuthentication"/>
+    <uap:Capability Name="picturesLibrary"/>
+    <uap:Capability Name="sharedUserCertificates"/>
+    <uap:Capability Name="contacts"/>
+    <uap3:Capability Name="userNotificationListener"/>
+    <Capability Name="codeGeneration"/>
+    <uap4:Capability Name="offlineMapsManagement"/>
+    <iot:Capability Name="systemManagement"/>
+    <uap6:Capability Name="graphicsCapture"/>
+    <uap2:Capability Name="phoneCallHistoryPublic"/>
+    <uap:Capability Name="userAccountInformation"/>
+    <Capability Name="internetClientServer"/>
+    <uap:Capability Name="removableStorage"/>
+    <Capability Name="privateNetworkClientServer"/>
+    <uap:Capability Name="appointments"/>
+    <uap2:Capability Name="spatialPerception"/>
+    <uap:Capability Name="objects3D"/>
+    <uap:Capability Name="blockedChatMessages"/>
+    <uap3:Capability Name="backgroundMediaPlayback"/>
+    <uap:Capability Name="videosLibrary"/>
+    <uap4:Capability Name="userDataTasks"/>
+    <uap3:Capability Name="remoteSystem"/>
+    <DeviceCapability Name="lowLevel"/>
+    <DeviceCapability Name="bluetooth"/>
+    <DeviceCapability Name="gazeInput"/>
+    <DeviceCapability Name="location"/>
+    <DeviceCapability Name="proximity"/>
+    <DeviceCapability Name="pointOfService"/>
+    <DeviceCapability Name="microphone"/>
+    <DeviceCapability Name="webcam"/>
   </Capabilities>
 
   <genTemplate:Metadata>
