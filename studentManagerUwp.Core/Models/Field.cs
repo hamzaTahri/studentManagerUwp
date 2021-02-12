@@ -3,13 +3,13 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 
-namespace studentManagerUwp
+namespace studentManagerUwp.Core.Models
 {
-    class Field
+    public class Field
     {
         public int Id { get; set; }
         public string name { get; set; }
-        public string year { get; set; }
+        public int year { get; set; }
         public string description { get; set; }
 
       /*  public Field()

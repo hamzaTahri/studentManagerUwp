@@ -16,36 +16,35 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 
+using studentManagerUwp.Core.Models;
+
 namespace studentManagerUwp.Views
 {
     public sealed partial class SessionsPage : Page, INotifyPropertyChanged
     {
-        private SampleOrder _selected;
+        private Session _selected;
 
-        public SampleOrder Selected
+        public Session Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }
         }
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+        ObservableCollection<Session> SampleItems { get; set; }
 
         public SessionsPage()
         {
             InitializeComponent();
             Loaded += SessionsPage_Loaded;
+            SampleItems = new ObservableCollection<Session>();
         }
 
         private async void SessionsPage_Loaded(object sender, RoutedEventArgs e)
         {
             SampleItems.Clear();
 
-            var data = await SampleDataService.GetMasterDetailDataAsync();
+            await DatabaseConnector.LoadRecordsAsync(SampleItems);
 
-            foreach (var item in data)
-            {
-                SampleItems.Add(item);
-            }
 
             if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
             {
@@ -55,7 +54,7 @@ namespace studentManagerUwp.Views
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        private void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
             if (Equals(storage, value))
             {

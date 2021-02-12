@@ -29,20 +29,20 @@
             </StackPanel>
             <StackPanel Name="block" Padding="0,15,0,0">
                 <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Name" />
-                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.fullName, Mode=OneWay}" />
+                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.fullName, Mode=OneWay}" Name="txtName" />
                 <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Email" />
-                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}"  Text="{x:Bind MasterMenuItem.email, Mode=OneWay}" />
+                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}"  Text="{x:Bind MasterMenuItem.email, Mode=OneWay}" Name="txtEmail" />
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
                     Text="Password" />
-                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}"  Text="{x:Bind MasterMenuItem.password, Mode=OneWay}" />
+                <TextBox Style="{StaticResource DetailBodyBaseMediumStyle}"  Text="{x:Bind MasterMenuItem.password, Mode=OneWay}"  Name="txtPassword"/>
             </StackPanel>
             <StackPanel Name="block2"  HorizontalAlignment="Center" Orientation="Horizontal" >
                 <Button Name="BtnEditProf" Content="Edit" Foreground="Black"  Background="White" Margin="20"  Width="100" BorderBrush="Green"/>
                 <Button Name="BtnRemoveProf" Content="Remove" Foreground="Black"  Background="White" Width="100" BorderBrush="Red" />
             </StackPanel>
-            <Button CornerRadius="20" Width="40" Height="40" HorizontalAlignment="Right" Foreground="White" Background="Yellow" VerticalAlignment="Bottom" Content="+" FontWeight="Bold"  FontSize="20" />
+            <Button Name="btnAddProf" CornerRadius="20" Width="40" Height="40" HorizontalAlignment="Right" Foreground="White" Background="Yellow" VerticalAlignment="Bottom" Content="+" FontWeight="Bold"  FontSize="20" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

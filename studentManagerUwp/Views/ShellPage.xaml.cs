@@ -46,6 +46,7 @@ namespace studentManagerUwp.Views
             InitializeComponent();
             DataContext = this;
             Initialize();
+
         }
 
         private void Initialize()

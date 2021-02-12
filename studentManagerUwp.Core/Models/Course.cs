@@ -3,9 +3,9 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 
-namespace studentManagerUwp
+namespace studentManagerUwp.Core.Models
 {
-    class Course
+    public class Course
     {
         public int Id { get; set; }
         public string name { get; set; }

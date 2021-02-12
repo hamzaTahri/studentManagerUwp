@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>studentManagerUwp</value>
+    <value>Students Manager</value>
     <comment>Application display name</comment>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>studentManagerUwp</value>
+    <value>Students Manager using Uwp</value>
     <comment>Application description</comment>
   </data>
   <data name="Shell_Main.Content" xml:space="preserve">
@@ -130,7 +130,7 @@
     <comment>Navigation view item name for Main</comment>
   </data>
   <data name="Professors_NoSelection.Text" xml:space="preserve">
-    <value>Select an item from the list.</value>
+    <value>Select a Professor To See It's Informations</value>
     <comment>No selection text for Professors</comment>
   </data>
   <data name="Professors.MasterHeader" xml:space="preserve">
@@ -154,7 +154,7 @@
     <comment>Navigation view item name for Students</comment>
   </data>
   <data name="Courses_NoSelection.Text" xml:space="preserve">
-    <value>Select an item from the list.</value>
+    <value>Select a Course To See It's Informations</value>
     <comment>No selection text for Courses</comment>
   </data>
   <data name="Courses.MasterHeader" xml:space="preserve">
@@ -166,7 +166,7 @@
     <comment>Navigation view item name for Courses</comment>
   </data>
   <data name="Fields_NoSelection.Text" xml:space="preserve">
-    <value>Select an item from the list.</value>
+    <value>Select a Field To See It's Informations</value>
     <comment>No selection text for Fields</comment>
   </data>
   <data name="Fields.MasterHeader" xml:space="preserve">
@@ -178,7 +178,7 @@
     <comment>Navigation view item name for Fields</comment>
   </data>
   <data name="Sessions_NoSelection.Text" xml:space="preserve">
-    <value>Select an item from the list.</value>
+    <value>Select a Session To See It's Informations</value>
     <comment>No selection text for Sessions</comment>
   </data>
   <data name="Sessions.MasterHeader" xml:space="preserve">
@@ -194,7 +194,7 @@
     <comment>Navigation view item name for Reporting</comment>
   </data>
   <data name="CartesianChart.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Bar chart showing purchases by each company</value>
+    <value>Bar chart showing presence for each student</value>
     <comment>Automation name (and description) for the chart page content</comment>
   </data>
   <data name="Shell_Chart.Content" xml:space="preserve">
@@ -217,23 +217,23 @@
     <value>Light</value>
     <comment>Light theme text for Settings</comment>
   </data>
-  <data name="Settings_About.Text" xml:space="preserve">    
+  <data name="Settings_About.Text" xml:space="preserve">
     <value>About this application</value>
     <comment>About this application title for Settings</comment>
   </data>
-  <data name="Settings_AboutDescription.Text" xml:space="preserve">    
-    <value>Settings page placeholder text.  Your app description goes here.</value>
+  <data name="Settings_AboutDescription.Text" xml:space="preserve">
+    <value>This App Helps professors to manage their students</value>
     <comment>About this application description for Settings</comment>
   </data>
-  <data name="Settings_PrivacyTermsLink.Content" xml:space="preserve">    
+  <data name="Settings_PrivacyTermsLink.Content" xml:space="preserve">
     <value>Privacy Statement</value>
     <comment>Privacy Statement link content for Settings</comment>
   </data>
-  <data name="Settings_PrivacyTermsLink.NavigateUri" xml:space="preserve">  
+  <data name="Settings_PrivacyTermsLink.NavigateUri" xml:space="preserve">
     <value>https://YourPrivacyUrlGoesHere/</value>
     <comment>Here is your Privacy Statement url for Settings</comment>
   </data>
-  <data name="Settings_Personalization.Text" xml:space="preserve">   
+  <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>Personalization</value>
     <comment>Personalization text for Settings</comment>
   </data>

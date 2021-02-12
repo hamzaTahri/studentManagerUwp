@@ -7,12 +7,12 @@ namespace studentManagerUwp
 {
     public class Student 
     {
-        public string cin { get; set; }
-        public string Firstname { get; set; }
+        public int Id { get; set; }
+        public string Cin { get; set; }
+        public string FullName { get; set; }
         public string Tel { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public int fieldId { get; set; }
+        public string Email { get; set; }
+        public int FieldId { get; set; }
 
 
 

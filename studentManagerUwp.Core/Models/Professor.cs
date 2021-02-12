@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SQLite;
 using System.Collections.Generic;
 
 namespace studentManagerUwp.Core.Models
@@ -9,6 +10,24 @@ namespace studentManagerUwp.Core.Models
         public string fullName { get; set; }
         public string email { get; set; }
         public string password { get; set; }
+
+        public  int insertMe()
+        {
+            try
+            {
+                SQLiteConnection connection = DatabaseConnector.connection;
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand("INSERT INTO \"main\".\"Professors\"(\"id\",\"fullName\", \"email\", \"password\") Values(NULL,\"" + fullName + "\",\"" + email + "\",\"" + password + "\")", connection);
+                var x =  command.ExecuteNonQuery();
+                connection.Close();
+                return x;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine( ex.StackTrace);
+                return 0;
+            }
+        }
        
 /*
         public List<Professor> allProfs()
