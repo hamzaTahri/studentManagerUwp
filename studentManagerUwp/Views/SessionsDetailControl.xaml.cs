@@ -40,17 +40,20 @@ namespace studentManagerUwp.Views
             FillCombos();
         }
 
-        private static bool studentPresent(int studentId,int sessionId)
+        private static bool studentPresent(int studentId, int sessionId)
         {
-            foreach(StudentSession ss in StudentSessions)
+            foreach (StudentSession ss in StudentSessions)
             {
-                if(ss.studentId == studentId && ss.sessionId == sessionId)
+                if (ss.studentId == studentId && ss.sessionId == sessionId)
                 {
                     return true;
                 }
             }
             return false;
         }
+
+        static ObservableCollection<Student> presentStudents = new ObservableCollection<Student>();
+        static ObservableCollection<Student> absentStudents = new ObservableCollection<Student>();
 
         private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -61,29 +64,54 @@ namespace studentManagerUwp.Views
             {
                 control.listViewPresents.Items.Clear();
                 control.listViewAbsents.Items.Clear();
+                presentStudents.Clear();
+                absentStudents.Clear();
 
+                Students = getStudentsOfField(control.MasterMenuItem.fieldId);
                 foreach (Student st in Students)
                 {
                     if (studentPresent(st.Id, control.MasterMenuItem.Id))
                     {
                         control.listViewPresents.Items.Add(st.FullName);
+                        presentStudents.Add(st);
                     }
                     else
                     {
                         control.listViewAbsents.Items.Add(st.FullName);
+                        absentStudents.Add(st);
                     }
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.StackTrace);
             }
 
         }
 
+        private static  ObservableCollection<Student> getStudentsOfField(int fieldId)
+        {
+            FillCombos2();
+            ObservableCollection<Student> studentsOfField = new ObservableCollection<Student>();
+            foreach(Student st in Students)
+            {
+                if(st.FieldId == fieldId)
+                {
+                    studentsOfField.Add(st);
+                }
+            }
+            return studentsOfField;
+        }
+
         public async void FillCombos()
         {
             await DatabaseConnector.LoadRecordsAsyncForField(Fields);
             await DatabaseConnector.LoadRecordsAsyncForCourse(Courses);
+            await DatabaseConnector.LoadRecordsAsyncForStudent(Students);
+            await DatabaseConnector.LoadRecordsAsyncForStudentSession(StudentSessions);
+        }
+        public static async void FillCombos2()
+        {
             await DatabaseConnector.LoadRecordsAsyncForStudent(Students);
             await DatabaseConnector.LoadRecordsAsyncForStudentSession(StudentSessions);
         }
@@ -321,19 +349,156 @@ namespace studentManagerUwp.Views
                 }
             }
         }
-
-        private void listViewAbsents_ItemClick(object sender, ItemClickEventArgs e)
+        //*******************************************************************************
+        private async void listViewAbsents_ItemClick(object sender, ItemClickEventArgs e)
         {
 
-        }
-
-        private void BtnSaveAbsence_Click(object sender, RoutedEventArgs e)
-        {
-
+            ObservableCollection<Student> newAbsentStudents = new ObservableCollection<Student>();
+            foreach (Student st in absentStudents)
+            {
+                if (st.FullName != e.ClickedItem.ToString())
+                {
+                    newAbsentStudents.Add(st);
+                }
+                else
+                {
+                    presentStudents.Add(st);
+                }
+            }
+            absentStudents = newAbsentStudents;
+            refillStudentsListView(absentStudents, presentStudents);
         }
 
         private void listViewPresents_ItemClick(object sender, ItemClickEventArgs e)
         {
+            ObservableCollection<Student> newPresentStudents = new ObservableCollection<Student>();
+            foreach (Student st in presentStudents)
+            {
+                if (st.FullName != e.ClickedItem.ToString())
+                {
+                    newPresentStudents.Add(st);
+                }
+                else
+                {
+                    absentStudents.Add(st);
+                }
+            }
+            presentStudents = newPresentStudents;
+            refillStudentsListView(absentStudents, presentStudents);
+        }
+        public void refillStudentsListView(ObservableCollection<Student> absents, ObservableCollection<Student> presents)
+        {
+            listViewAbsents.Items.Clear();
+            foreach (Student st in absents)
+            {
+                listViewAbsents.Items.Add(st.FullName);
+            }
+            listViewPresents.Items.Clear();
+            foreach (Student st in presents)
+            {
+                listViewPresents.Items.Add(st.FullName);
+            }
+        }
+
+        private async void BtnSaveAbsence_Click(object sender, RoutedEventArgs e)
+        {
+
+            var messageDialog = new MessageDialog("Do You Really Want To Insert This as a new Session");
+#pragma warning disable UWP003 // UWP-only
+            messageDialog.Commands.Add(new UICommand("Yes", new UICommandInvokedHandler(CommandInvokedHandler_Save)));
+#pragma warning restore UWP003 // UWP-only
+            messageDialog.Commands.Add(new UICommand("No", new UICommandInvokedHandler(CommandInvokedHandler_Save)));
+            messageDialog.DefaultCommandIndex = 0;
+            messageDialog.CancelCommandIndex = 1;
+            await messageDialog.ShowAsync();
+
+
+            //Sure To Save
+            /*try
+            {
+                deleteAllStudentSessionIds(MasterMenuItem);
+                insertNewStudentSessions(MasterMenuItem, presentStudents);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }*/
+
+        }
+
+        private void CommandInvokedHandler_Save(IUICommand command)
+        {
+            if (command.Label == "Yes")
+            {
+                //Sure To Save
+                try
+                {
+                    deleteAllStudentSessionIds(MasterMenuItem);
+                    if(insertNewStudentSessions(MasterMenuItem, presentStudents))
+                    {
+                        ProfessorsDetailControl.showOperationDone(" Saved ", " Attendance ");
+                    }
+                    else
+                    {
+                        ProfessorsDetailControl.showOperationFailed("Saving Attendance ");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.StackTrace);
+                }
+            }
+        }
+
+        private void deleteAllStudentSessionIds(Session s)
+        {
+            var sqlpath = "Data Source=" + Windows.Storage.ApplicationData.Current.LocalFolder.Path + "\\studentManagerDatabase.db";
+            using (SQLiteConnection connection = new SQLiteConnection(sqlpath))
+            {
+                connection.Open();
+                string req = "delete from StudentSessions where sessionId='" + s.Id + "'";
+                SQLiteCommand command = new SQLiteCommand(req, connection);
+                var reader = command.ExecuteNonQuery();
+
+                if (reader > 0)
+                {
+                    connection.Close();
+                    return ;
+                }
+                else
+                {
+                    connection.Close();
+                    return ;
+                }
+            }
+        }
+        private bool insertNewStudentSessions(Session s, ObservableCollection<Student> presents)
+        {
+            var sqlpath = "Data Source=" + Windows.Storage.ApplicationData.Current.LocalFolder.Path + "\\studentManagerDatabase.db";
+            using (SQLiteConnection connection = new SQLiteConnection(sqlpath))
+            {
+                connection.Open();
+                try
+                {
+                    string req;
+                    SQLiteCommand command;
+                    foreach (Student st in presents)
+                    {
+                        req = "insert Into StudentSessions (sessionId,studentId) Values('" + s.Id + "','" + st.Id + "')";
+                        command = new SQLiteCommand(req, connection);
+                        command.ExecuteNonQuery();
+                    }
+                    connection.Close();
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.StackTrace);
+                    connection.Close();
+                    return false;
+                }
+            }
 
         }
     }

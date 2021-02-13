@@ -11,7 +11,7 @@ namespace studentManagerUwp.Core.Models
 
         public static async Task LoadRecordsAsync(ObservableCollection<Professor> items)
         {
-            var sqlCon = @"Data Source=C:\Users\ForUwp\AppData\Local\Packages\C49BBD7C-8F7B-4A56-ABDC-753FC15ACC86_0g90rnz4tfct4\LocalState\studentManagerDatabase.db ;Version=3";
+            var sqlCon =@"Data Source=C:\Users\ForUwp\AppData\Local\Packages\C49BBD7C-8F7B-4A56-ABDC-753FC15ACC86_0g90rnz4tfct4\LocalState\studentManagerDatabase.db ;Version=3";
 
             using (SQLiteConnection connection = new SQLiteConnection(sqlCon))
             {

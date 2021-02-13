@@ -9,10 +9,22 @@
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--
-                The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.
-            -->
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+
+                <BitmapIcon 
+                            Height="130"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            UriSource="Assets/Wide310x150Logo.scale-200.png"/>
+                <TextBlock
+                    Margin="{StaticResource SmallLeftTopMargin}"
+                    VerticalAlignment="Center"
+                    Text="Welcome to ScolarAbsence"
+                    Style="{ThemeResource TitleTextBlockStyle}" />
+
+
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

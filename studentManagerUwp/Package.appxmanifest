@@ -15,7 +15,7 @@
   <Identity
     Name="C49BBD7C-8F7B-4A56-ABDC-753FC15ACC86"
     Publisher="CN=ForUwp"
-    Version="1.0.0.0" />
+    Version="1.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="C49BBD7C-8F7B-4A56-ABDC-753FC15ACC86" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

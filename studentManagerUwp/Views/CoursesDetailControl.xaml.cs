@@ -136,7 +136,7 @@ namespace studentManagerUwp.Views
         }
 
 
-
+        public string sqlpath;
         public bool insertCourse(Course c)
         {
             var sqlpath = "Data Source=" + Windows.Storage.ApplicationData.Current.LocalFolder.Path + "\\studentManagerDatabase.db";
