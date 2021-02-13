@@ -1,0 +1,61 @@
+﻿<UserControl
+    x:Class="studentManagerUwp.Views.CoursesDetailControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <ScrollViewer
+        Name="ForegroundElement"
+        Padding="{StaticResource DetailPageMargin}"
+        HorizontalAlignment="Stretch"
+        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+        VerticalScrollMode="Enabled">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+
+                <BitmapIcon Grid.Column="0"
+                            Height="48"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            UriSource="Assets/courses64.png"/>
+                <TextBlock
+                    Margin="{StaticResource SmallLeftMargin}"
+                    VerticalAlignment="Center"
+                    Text="{x:Bind MasterMenuItem.name, Mode=OneWay}"
+                    Style="{ThemeResource TitleTextBlockStyle}" />
+            </StackPanel>
+            <StackPanel Name="block" Padding="0,15,0,0">
+                <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Name" />
+                <TextBox Name="txtName" Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.name, Mode=OneWay}" />
+
+                <StackPanel  HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <TextBlock Margin="0 20 0 0"  Style="{StaticResource DetailSubTitleStyle}" Text="Field :" />
+                    <TextBlock Padding="4 24 0 0" Text="(" />
+                    <TextBlock Padding="4 24 0 0" Text="{x:Bind getSelectedFieldName(MasterMenuItem.fieldId) , Mode=OneWay}" />
+                    <TextBlock Padding="4 24 0 0" Text=")" />
+                </StackPanel>
+                <ComboBox x:Name="FieldsCombo"  Margin="0 0 0 0"  Width="350" ItemsSource="{x:Bind Fields}"  SelectedItem="{x:Bind CurrentField, Mode=TwoWay}" DisplayMemberPath="name"/>
+
+                <StackPanel  HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <TextBlock Margin="0 20 0 0"  Style="{StaticResource DetailSubTitleStyle}" Text="Professor :" />
+                    <TextBlock Padding="4 24 0 0" Text="(" />
+                    <TextBlock Padding="4 24 0 0" Text="{x:Bind getSelectedProfName(MasterMenuItem.profId) , Mode=OneWay}" />
+                    <TextBlock Padding="4 24 0 0" Text=")" />
+                </StackPanel>
+                <ComboBox x:Name="CoursesCombo"  Margin="0 0 0 0"  Width="350" ItemsSource="{x:Bind Profs}" SelectedItem="{x:Bind CurrentProf, Mode=TwoWay}" DisplayMemberPath="fullName"/>
+
+
+                <TextBlock Margin="0 20 0 0" Style="{StaticResource DetailSubTitleStyle}" Text="Description" />
+                <TextBox  Name="txtDescription" TextWrapping="Wrap" AcceptsReturn="True"  ScrollViewer.VerticalScrollBarVisibility="Visible" Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.description, Mode=OneWay}" />
+            </StackPanel>
+            <StackPanel Name="block2"  HorizontalAlignment="Center" Orientation="Horizontal" >
+                <Button Name="BtnEditCourse" Content="Edit" Foreground="Black"  Background="White" Margin="20"  Width="100" BorderBrush="Green" Click="BtnEditCourse_Click"/>
+                <Button Name="BtnRemoveCourse" Content="Remove" Foreground="Black"  Background="White" Width="100" BorderBrush="Red" Click="BtnRemoveCourse_Click" />
+            </StackPanel>
+            <Button  Name="BtnAddCourse" CornerRadius="20" Width="40" Height="40" HorizontalAlignment="Right" Foreground="White" Background="Yellow" VerticalAlignment="Bottom" Content="+" FontWeight="Bold"  FontSize="20" Click="BtnAddCourse_Click" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

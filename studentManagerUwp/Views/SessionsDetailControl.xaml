@@ -1,0 +1,111 @@
+﻿<UserControl
+    x:Class="studentManagerUwp.Views.SessionsDetailControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <ScrollViewer
+        Name="ForegroundElement"
+        Padding="{StaticResource DetailPageMargin}"
+        HorizontalAlignment="Stretch"
+        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+        VerticalScrollMode="Enabled">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+
+                <BitmapIcon Grid.Column="0"
+                            Height="48"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            UriSource="Assets/session64.png"/>
+                <TextBlock
+                    Margin="{StaticResource SmallLeftMargin}"
+                    VerticalAlignment="Center"
+                    Text="{x:Bind MasterMenuItem.date , Mode=OneWay}"
+                    Style="{ThemeResource TitleTextBlockStyle}" />
+            </StackPanel>
+            <StackPanel Name="block" Padding="0,15,0,0">
+                <StackPanel  HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Date:" />
+                    <TextBlock Padding="0 4 0 0" Text="(" />
+                    <TextBlock Padding="4 4 0 0" Text="{x:Bind MasterMenuItem.date , Mode=OneWay}" />
+                    <TextBlock Padding="0 4 0 0" Text=")" />
+                </StackPanel>
+                <StackPanel  HorizontalAlignment="Center" Orientation="Horizontal" >
+                    <!--<TextBox Margin="0 20 0 0"  Style="{StaticResource DetailBodyBaseMediumStyle}" Width="200" Text="{x:Bind MasterMenuItem.date, Mode=OneWay}" />
+                    <Button CornerRadius="20" Width="30" Height="30" HorizontalAlignment="Center"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="White" BorderBrush="Aqua" VerticalAlignment="Bottom" Foreground="Aqua" Content="*" FontWeight="Normal" Margin="10 0 0 0" FontSize="20" />
+                    -->
+                    <CalendarDatePicker   x:Name="calendarDatePicker" DateFormat="{}{day.integer} {month.full} {year.full}"   Width="350"/>
+                </StackPanel>
+
+                <StackPanel  HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <TextBlock Margin="0 20 0 0"  Style="{StaticResource DetailSubTitleStyle}" Text="Starting Time:" />
+                    <TextBlock Padding="4 24 0 0" Text="(" />
+                    <TextBlock Padding="4 24 0 0" Text="{x:Bind MasterMenuItem.startTime.Normalize() , Mode=OneWay}" />
+                    <TextBlock Padding="4 24 0 0" Text=")" />
+                </StackPanel>
+                <StackPanel   HorizontalAlignment="Center" Orientation="Horizontal" >
+                    <!--<TextBox Margin="0 0 0 0"  Style="{StaticResource DetailBodyBaseMediumStyle}" Width="200" Text="{x:Bind MasterMenuItem.startTime, Mode=OneWay}" />
+                    <Button CornerRadius="20" Width="30" Height="30" HorizontalAlignment="Center"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="White" BorderBrush="Aqua" VerticalAlignment="Bottom" Foreground="Aqua" Content="*" FontWeight="Normal" Margin="0 0 0 0" FontSize="20" />
+                    -->
+                    <TimePicker x:Name="startTimePicker" Width="350"/>
+                </StackPanel>
+                <StackPanel  HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <TextBlock Margin="0 20 0 0"  Style="{StaticResource DetailSubTitleStyle}" Text="Ending Time:" />
+                    <TextBlock Padding="4 24 0 0" Text="(" />
+                    <TextBlock Padding="4 24 0 0" Text="{x:Bind MasterMenuItem.endTime.Normalize() , Mode=OneWay}" />
+                    <TextBlock Padding="4 24 0 0" Text=")" />
+                </StackPanel>
+
+                <StackPanel   HorizontalAlignment="Center" Orientation="Horizontal" >
+                    <!--<TextBox Style="{StaticResource DetailBodyBaseMediumStyle}" Width="200"  Text="{x:Bind MasterMenuItem.endTime, Mode=OneWay}" />
+                    <Button CornerRadius="20" Width="30" Height="30" HorizontalAlignment="Center"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="White" BorderBrush="Aqua" VerticalAlignment="Bottom" Foreground="Aqua" Content="*" FontWeight="Normal" Margin="10 0 0 0" FontSize="20" />
+                    -->
+                    <TimePicker x:Name="endTimePicker" Width="350" />
+                </StackPanel  >
+
+                <StackPanel  HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <TextBlock Margin="0 20 0 0"  Style="{StaticResource DetailSubTitleStyle}" Text="Field :" />
+                    <TextBlock Padding="4 24 0 0" Text="(" />
+                    <TextBlock Padding="4 24 0 0" Text="{x:Bind getSelectedFieldName(MasterMenuItem.fieldId) , Mode=OneWay}" />
+                    <TextBlock Padding="4 24 0 0" Text=")" />
+                </StackPanel>
+                <ComboBox x:Name="FieldsCombo"  Margin="0 0 0 0"  Width="350" ItemsSource="{x:Bind Fields}"  SelectedItem="{x:Bind CurrentField, Mode=TwoWay}" DisplayMemberPath="name"/>
+
+                <StackPanel  HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <TextBlock Margin="0 20 0 0"  Style="{StaticResource DetailSubTitleStyle}" Text="Course :" />
+                    <TextBlock Padding="4 24 0 0" Text="(" />
+                    <TextBlock Padding="4 24 0 0" Text="{x:Bind getSelectedCourseName(MasterMenuItem.courseId) , Mode=OneWay}" />
+                    <TextBlock Padding="4 24 0 0" Text=")" />
+                </StackPanel>
+                <ComboBox x:Name="CoursesCombo"  Margin="0 0 0 0"  Width="350" ItemsSource="{x:Bind Courses}" SelectedItem="{x:Bind CurrentCourse, Mode=TwoWay}" DisplayMemberPath="name"/>
+
+            </StackPanel>
+            <StackPanel Name="block2"  HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Name="BtnEditSession" Click="BtnEditSession_Click" Content="Edit" Foreground="Black"  Background="White" Margin="0 20 20 0"  Width="100" BorderBrush="Green"/>
+                <Button Name="BtnRemoveSession" Click="BtnRemoveSession_Click" Content="Remove" Foreground="Black"  Background="White" Margin="0 20 0 0" Width="100" BorderBrush="Red" />
+            </StackPanel>
+            <Button Name="BtnAddSession" Click="BtnAddSession_Click" CornerRadius="20" Width="40" Height="40" HorizontalAlignment="Right" Foreground="White" Background="Yellow" Margin="0 10 0 0" VerticalAlignment="Bottom" Content="+" FontWeight="Bold"  FontSize="20" />
+
+
+            <StackPanel  HorizontalAlignment="Center" Orientation="Horizontal">
+            <ListView Margin="0 20 0 0" Width="250" IsItemClickEnabled="True"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                <ListViewHeaderItem  Content="Present"></ListViewHeaderItem>
+                <ListViewItem Content="Item 1" />
+                <ListViewItem Content="Item 2" />
+                <ListViewItem Content="Item 1" />
+                <ListViewItem Content="Item 2" />
+                <ListViewItem Content="Item 1" />
+                <ListViewItem Content="Item 2" />
+            </ListView>
+                <ListView Margin="40 20 0 0" IsItemClickEnabled="True"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <ListViewHeaderItem  Content="Absent"></ListViewHeaderItem>
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+
+    </ScrollViewer>
+</UserControl>
