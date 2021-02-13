@@ -17,6 +17,7 @@
         </TransitionCollection>
     </Page.Transitions>
     <Page.Resources>
+
         <DataTemplate x:Key="ItemTemplate" x:DataType="model:Session">
             <Grid Height="60">
                 <Grid.ColumnDefinitions>

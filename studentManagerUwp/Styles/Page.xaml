@@ -6,6 +6,7 @@
         <Setter Property="Background" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
     </Style>
 
+
     <Style x:Key="CircleButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
@@ -79,5 +80,6 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
 
 </ResourceDictionary>

@@ -40,8 +40,35 @@ namespace studentManagerUwp.Core.Models
 
 
         }
+        public static async Task LoadRecordsAsyncForStudentSession(ObservableCollection<StudentSession> items)
+        {
+            var sqlCon = @"Data Source=C:\Users\ForUwp\AppData\Local\Packages\C49BBD7C-8F7B-4A56-ABDC-753FC15ACC86_0g90rnz4tfct4\LocalState\studentManagerDatabase.db ;Version=3";
 
-        
+            using (SQLiteConnection connection = new SQLiteConnection(sqlCon))
+            {
+                await connection.OpenAsync();
+                SQLiteCommand command = new SQLiteCommand("SELECT * FROM StudentSessions", connection);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    var Id = reader.GetOrdinal("id");
+                    var studentId = reader.GetOrdinal("studentId");
+                    var sessionId = reader.GetOrdinal("sessionId");
+
+
+                    while (await reader.ReadAsync())
+                    {
+                        StudentSession ss = new StudentSession();
+                        ss.Id = Convert.ToInt32(reader.GetValue(Id));
+                        ss.studentId = Convert.ToInt32(reader.GetValue(studentId));
+                        ss.sessionId = Convert.ToInt32(reader.GetValue(sessionId));
+                        items.Add(ss);
+                    }
+                }
+            }
+        }
+
+
         public static async Task LoadRecordsAsyncForSession(ObservableCollection<Session> items)
         {
             var sqlCon = @"Data Source=C:\Users\ForUwp\AppData\Local\Packages\C49BBD7C-8F7B-4A56-ABDC-753FC15ACC86_0g90rnz4tfct4\LocalState\studentManagerDatabase.db ;Version=3";

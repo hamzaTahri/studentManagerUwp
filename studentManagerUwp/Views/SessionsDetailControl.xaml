@@ -38,7 +38,7 @@
                     <!--<TextBox Margin="0 20 0 0"  Style="{StaticResource DetailBodyBaseMediumStyle}" Width="200" Text="{x:Bind MasterMenuItem.date, Mode=OneWay}" />
                     <Button CornerRadius="20" Width="30" Height="30" HorizontalAlignment="Center"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="White" BorderBrush="Aqua" VerticalAlignment="Bottom" Foreground="Aqua" Content="*" FontWeight="Normal" Margin="10 0 0 0" FontSize="20" />
                     -->
-                    <CalendarDatePicker   x:Name="calendarDatePicker" DateFormat="{}{day.integer} {month.full} {year.full}"   Width="350"/>
+                    <CalendarDatePicker   x:Name="calendarDatePicker" DateFormat="{}{day.integer} {month.full} {year.full}"   Width="400"/>
                 </StackPanel>
 
                 <StackPanel  HorizontalAlignment="Left" Orientation="Horizontal" >
@@ -51,7 +51,7 @@
                     <!--<TextBox Margin="0 0 0 0"  Style="{StaticResource DetailBodyBaseMediumStyle}" Width="200" Text="{x:Bind MasterMenuItem.startTime, Mode=OneWay}" />
                     <Button CornerRadius="20" Width="30" Height="30" HorizontalAlignment="Center"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="White" BorderBrush="Aqua" VerticalAlignment="Bottom" Foreground="Aqua" Content="*" FontWeight="Normal" Margin="0 0 0 0" FontSize="20" />
                     -->
-                    <TimePicker x:Name="startTimePicker" Width="350"/>
+                    <TimePicker x:Name="startTimePicker" Width="400"/>
                 </StackPanel>
                 <StackPanel  HorizontalAlignment="Left" Orientation="Horizontal" >
                     <TextBlock Margin="0 20 0 0"  Style="{StaticResource DetailSubTitleStyle}" Text="Ending Time:" />
@@ -64,7 +64,7 @@
                     <!--<TextBox Style="{StaticResource DetailBodyBaseMediumStyle}" Width="200"  Text="{x:Bind MasterMenuItem.endTime, Mode=OneWay}" />
                     <Button CornerRadius="20" Width="30" Height="30" HorizontalAlignment="Center"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="White" BorderBrush="Aqua" VerticalAlignment="Bottom" Foreground="Aqua" Content="*" FontWeight="Normal" Margin="10 0 0 0" FontSize="20" />
                     -->
-                    <TimePicker x:Name="endTimePicker" Width="350" />
+                    <TimePicker x:Name="endTimePicker" Width="400" />
                 </StackPanel  >
 
                 <StackPanel  HorizontalAlignment="Left" Orientation="Horizontal" >
@@ -73,7 +73,7 @@
                     <TextBlock Padding="4 24 0 0" Text="{x:Bind getSelectedFieldName(MasterMenuItem.fieldId) , Mode=OneWay}" />
                     <TextBlock Padding="4 24 0 0" Text=")" />
                 </StackPanel>
-                <ComboBox x:Name="FieldsCombo"  Margin="0 0 0 0"  Width="350" ItemsSource="{x:Bind Fields}"  SelectedItem="{x:Bind CurrentField, Mode=TwoWay}" DisplayMemberPath="name"/>
+                <ComboBox x:Name="FieldsCombo"  Margin="0 0 0 0"  Width="400" ItemsSource="{x:Bind Fields}"  SelectedItem="{x:Bind CurrentField, Mode=TwoWay}" DisplayMemberPath="name"/>
 
                 <StackPanel  HorizontalAlignment="Left" Orientation="Horizontal" >
                     <TextBlock Margin="0 20 0 0"  Style="{StaticResource DetailSubTitleStyle}" Text="Course :" />
@@ -81,7 +81,7 @@
                     <TextBlock Padding="4 24 0 0" Text="{x:Bind getSelectedCourseName(MasterMenuItem.courseId) , Mode=OneWay}" />
                     <TextBlock Padding="4 24 0 0" Text=")" />
                 </StackPanel>
-                <ComboBox x:Name="CoursesCombo"  Margin="0 0 0 0"  Width="350" ItemsSource="{x:Bind Courses}" SelectedItem="{x:Bind CurrentCourse, Mode=TwoWay}" DisplayMemberPath="name"/>
+                <ComboBox x:Name="CoursesCombo"  Margin="0 0 0 0"  Width="400" ItemsSource="{x:Bind Courses}" SelectedItem="{x:Bind CurrentCourse, Mode=TwoWay}" DisplayMemberPath="name"/>
 
             </StackPanel>
             <StackPanel Name="block2"  HorizontalAlignment="Center" Orientation="Horizontal">
@@ -91,21 +91,24 @@
             <Button Name="BtnAddSession" Click="BtnAddSession_Click" CornerRadius="20" Width="40" Height="40" HorizontalAlignment="Right" Foreground="White" Background="Yellow" Margin="0 10 0 0" VerticalAlignment="Bottom" Content="+" FontWeight="Bold"  FontSize="20" />
 
 
+            <TextBlock Text="Attendance" Margin="0 20 0 0" HorizontalAlignment="Center" HorizontalTextAlignment="Center" TextDecorations="Underline" Style="{ThemeResource ListTitleStyle}" />
             <StackPanel  HorizontalAlignment="Center" Orientation="Horizontal">
-            <ListView Margin="0 20 0 0" Width="250" IsItemClickEnabled="True"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                <ListViewHeaderItem  Content="Present"></ListViewHeaderItem>
-                <ListViewItem Content="Item 1" />
-                <ListViewItem Content="Item 2" />
-                <ListViewItem Content="Item 1" />
-                <ListViewItem Content="Item 2" />
-                <ListViewItem Content="Item 1" />
-                <ListViewItem Content="Item 2" />
-            </ListView>
-                <ListView Margin="40 20 0 0" IsItemClickEnabled="True"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                    <ListViewHeaderItem  Content="Absent"></ListViewHeaderItem>
-                </ListView>
+                <StackPanel  HorizontalAlignment="Center" Orientation="Vertical">
+                    <ListViewHeaderItem  Content="Present"/>
+                    <ListView Name="listViewPresents" Margin="0 20 0 0" Width="250" ItemClick="listViewPresents_ItemClick" IsItemClickEnabled="True"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    </ListView>
+                </StackPanel>
+                <StackPanel  HorizontalAlignment="Center" Orientation="Vertical">
+                    <ListViewHeaderItem  Content="Absent"/>
+                    <ListView Name="listViewAbsents" ItemClick="listViewAbsents_ItemClick" Margin="40 20 0 0" IsItemClickEnabled="True"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    </ListView>
+                </StackPanel>
             </StackPanel>
+
+            <Button Name="BtnSaveAbsence" Click="BtnSaveAbsence_Click" Content="Save" Foreground="Black"  Background="White" Margin="0 20 20 0"  Width="400" BorderBrush="Blue"/>
         </StackPanel>
 
     </ScrollViewer>
+
 </UserControl>
+    

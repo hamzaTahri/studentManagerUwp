@@ -19,6 +19,9 @@ namespace studentManagerUwp.Views
         ObservableCollection<Field> Fields { get; set; }
         ObservableCollection<Course> Courses { get; set; }
 
+        static ObservableCollection<Student> Students { get; set; }
+        static ObservableCollection<StudentSession> StudentSessions { get; set; }
+
         Field CurrentField { get; set; }
         Course CurrentCourse { get; set; }
 
@@ -29,10 +32,24 @@ namespace studentManagerUwp.Views
             InitializeComponent();
             Fields = new ObservableCollection<Field>();
             Courses = new ObservableCollection<Course>();
+            Students = new ObservableCollection<Student>();
+            StudentSessions = new ObservableCollection<StudentSession>();
 
             CurrentField = new Field();
             CurrentCourse = new Course();
             FillCombos();
+        }
+
+        private static bool studentPresent(int studentId,int sessionId)
+        {
+            foreach(StudentSession ss in StudentSessions)
+            {
+                if(ss.studentId == studentId && ss.sessionId == sessionId)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -40,12 +57,35 @@ namespace studentManagerUwp.Views
             var control = d as SessionsDetailControl;
             control.ForegroundElement.ChangeView(0, 0, 1);
 
+            try
+            {
+                control.listViewPresents.Items.Clear();
+                control.listViewAbsents.Items.Clear();
+
+                foreach (Student st in Students)
+                {
+                    if (studentPresent(st.Id, control.MasterMenuItem.Id))
+                    {
+                        control.listViewPresents.Items.Add(st.FullName);
+                    }
+                    else
+                    {
+                        control.listViewAbsents.Items.Add(st.FullName);
+                    }
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+
         }
 
         public async void FillCombos()
         {
             await DatabaseConnector.LoadRecordsAsyncForField(Fields);
             await DatabaseConnector.LoadRecordsAsyncForCourse(Courses);
+            await DatabaseConnector.LoadRecordsAsyncForStudent(Students);
+            await DatabaseConnector.LoadRecordsAsyncForStudentSession(StudentSessions);
         }
 
         public void fillDatePicker()
@@ -60,7 +100,7 @@ namespace studentManagerUwp.Views
 
 
 
-        public async void FillSelected()
+        public void FillSelected()
         {
             if (MasterMenuItem != null)
             {
@@ -76,10 +116,6 @@ namespace studentManagerUwp.Views
             }
         }
 
-        private void CommandInvokedHandler(IUICommand command)
-        {
-            throw new NotImplementedException();
-        }
         public Field getSelectedField(int fieldId)
         {
             foreach (Field f in Fields)
@@ -286,6 +322,20 @@ namespace studentManagerUwp.Views
             }
         }
 
+        private void listViewAbsents_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void BtnSaveAbsence_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void listViewPresents_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }
 
